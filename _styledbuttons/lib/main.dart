@@ -13,14 +13,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          body: Center(
-        child: StyledButton(
-          text: "Button",
-          onPressed: () {
-            print("Button Pressed");
-          },
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              StyledButton(
+                text: "Button",
+                onPressed: () {
+                  print("Button Pressed");
+                },
+              ),
+              const SizedBox(height: 500), // Adding spacing between widgets
+              const Text("byKOMponents")
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
