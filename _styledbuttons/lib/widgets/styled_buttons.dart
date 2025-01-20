@@ -1,30 +1,63 @@
 import 'package:flutter/material.dart';
 
 class StyledButton extends StatelessWidget {
-  final String label;
-  final VoidCallback onPressed;
+  final String text;
+  final VoidCallback? onPressed;
+  final double? width;
+  final double? height;
+  final Widget? child;
+  final TextStyle? textStyle;
 
   const StyledButton({
-    Key? key,
-    required this.label,
-    required this.onPressed,
-  }) : super(key: key);
-  
+    super.key,
+    required this.text,
+    this.onPressed,
+    this.width = 300,
+    this.height = 65,
+    this.child,
+    this.textStyle,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue,// background color
-        foregroundColor: Colors.white,
-        textStyle: TextStyle(fontSize: 20),//font size
-        padding: EdgeInsets.all(20), 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),//border radius
-          side: BorderSide(color: Colors.white, width: 2),//border width and color
-        )
+    return Container(
+      width: width,
+      height: height,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+        color: onPressed == null ? Colors.grey.shade300 : Colors.green,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: Colors.black,
+          width: 3,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            offset: const Offset(6, 6),
+            spreadRadius: 1,
+          ),
+        ],
       ),
-      child: Text(label),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          splashFactory: NoSplash.splashFactory,
+          highlightColor: Colors.transparent,
+          borderRadius: BorderRadius.circular(10),
+          onTap: onPressed,
+          child: Center(
+            child: child ?? Text(
+              text,
+              style: textStyle ?? const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

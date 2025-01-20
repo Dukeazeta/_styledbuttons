@@ -11,16 +11,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: StyledButton(
-            label: "Button",
-            onPressed: () {
-              print("Button Pressed");
-            },
-          ),
-        )
-      ),
+          body: Center(
+        child: StyledButton(
+          text: "Button",
+          onPressed: () {
+            print("Button Pressed");
+          },
+        ),
+      )),
     );
   }
 }
